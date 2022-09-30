@@ -43,12 +43,14 @@ namespace EffectInfo
               "SetVisible")]
         public static void SetVisiblePatch()
         {
-            GEvent.ClearEvent(UiEvents.OnEatItemSend);
+            if(On)
+                GEvent.ClearEvent(UiEvents.OnEatItemSend);
         }
         [HarmonyPostfix, HarmonyPatch(typeof(CharacterAttributeDataView),"OnDisable")]
         public static void OnDisablePatch()
         {
-            GEvent.ClearEvent(UiEvents.OnEatItemSend);
+            if (On)
+                GEvent.ClearEvent(UiEvents.OnEatItemSend);
         }
     }
 }
