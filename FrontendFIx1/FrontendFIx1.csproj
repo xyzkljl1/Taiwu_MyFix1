@@ -61,6 +61,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>..\\..\\go.bat $(SolutionName) $(TargetPath)</PostBuildEvent>
+    <PostBuildEvent>cd ..
+cd ..
+go.bat $(SolutionName) $(TargetPath)</PostBuildEvent>
   </PropertyGroup>
 </Project>

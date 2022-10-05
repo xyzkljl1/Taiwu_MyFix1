@@ -32,7 +32,7 @@ namespace EffectInfo
         }
         public override void OnModSettingUpdate()
         {
-            ModManager.GetSetting(ModIdStr, "FrontendFix1On", ref On);
+            ModManager.GetSetting(ModIdStr, "On", ref On);
         }
         /*
          * 进行了多次Add而没有对应的remove，导致对象销毁后还有一些事件触发了空对象的调用
@@ -43,14 +43,14 @@ namespace EffectInfo
               "SetVisible")]
         public static void SetVisiblePatch()
         {
-            if(On)
-                GEvent.ClearEvent(UiEvents.OnEatItemSend);
+            //if(On)
+              //  GEvent.ClearEvent(UiEvents.OnEatItemSend);
         }
         [HarmonyPostfix, HarmonyPatch(typeof(CharacterAttributeDataView),"OnDisable")]
         public static void OnDisablePatch()
         {
-            if (On)
-                GEvent.ClearEvent(UiEvents.OnEatItemSend);
+            //if (On)
+              //  GEvent.ClearEvent(UiEvents.OnEatItemSend);
         }
     }
 }
