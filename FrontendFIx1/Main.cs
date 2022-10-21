@@ -13,6 +13,7 @@ using Config;
 using System.IO;
 using UICommon.Character.Elements;
 using UnityEngine;
+using GameData.Domains.Building;
 
 namespace EffectInfo
 {
@@ -32,25 +33,18 @@ namespace EffectInfo
         }
         public override void OnModSettingUpdate()
         {
-            ModManager.GetSetting(ModIdStr, "On", ref On);
+            ModManager.GetSetting(ModIdStr, "FrontOn", ref On);
         }
-        /*
-         * 进行了多次Add而没有对应的remove，导致对象销毁后还有一些事件触发了空对象的调用
-         * 会创建或删除事件的函数只有SetVisible和OnDisable,改成clear
-         */
+        public static FieldType GetValue<FieldType>(object instance, string field_name, BindingFlags flags)
+        {
+            Type type = instance.GetType();
+            FieldInfo field_info = type.GetField(field_name, flags);
+            return (FieldType)field_info.GetValue(instance);
+        }
+        public static FieldType GetPrivateValue<FieldType>(object instance, string field_name)
+        {
+            return GetValue<FieldType>(instance, field_name, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+        }
 
-        [HarmonyPostfix, HarmonyPatch(typeof(CharacterAttributeDataView),
-              "SetVisible")]
-        public static void SetVisiblePatch()
-        {
-            //if(On)
-              //  GEvent.ClearEvent(UiEvents.OnEatItemSend);
-        }
-        [HarmonyPostfix, HarmonyPatch(typeof(CharacterAttributeDataView),"OnDisable")]
-        public static void OnDisablePatch()
-        {
-            //if (On)
-              //  GEvent.ClearEvent(UiEvents.OnEatItemSend);
-        }
     }
 }

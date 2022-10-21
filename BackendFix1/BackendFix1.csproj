@@ -18,6 +18,9 @@
       <HintPath>G:\Steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\TaiwuModdingLib.dll</HintPath>
       <CopyLocal>False</CopyLocal>
     </Reference>
+    <Reference Include="Taiwu_EventPackage_CharacterInteraction_Relate">
+      <HintPath>G:\Steam\steamapps\common\The Scroll Of Taiwu\Event\EventLib\Taiwu_EventPackage_CharacterInteraction_Relate.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>G:\Steam\steamapps\common\The Scroll Of Taiwu\The Scroll of Taiwu_Data\Managed\UnityEngine.dll</HintPath>
       <CopyLocal>False</CopyLocal>
